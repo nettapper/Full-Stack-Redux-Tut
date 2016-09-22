@@ -41,10 +41,11 @@ describe('immutability', () => {
 
   describe('a tree (a map + a list)', () => {
     function addMovie(currentState, movie) {
-      return currentState.set(
-        'movies',
-        currentState.get('movies').push(movie)
-      );
+      // return currentState.set(
+      //   'movies',
+      //   currentState.get('movies').push(movie)
+      // );
+      return currentState.update('movies', movies => movies.push(movie));  // a second way we can 'reach in' and 'change' data
     }
 
     it('is immutable', () => {
