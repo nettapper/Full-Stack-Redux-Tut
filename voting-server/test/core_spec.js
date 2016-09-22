@@ -10,7 +10,15 @@ describe('application logic', () => {
       const state = Map();
       const entries = List.of('23', '127 Hours');
       const nextState = setEntries(state, entries);
+      expect(nextState).to.equal(Map({
+        entries: List.of('23', '127 Hours')
+      }));
+    });
 
+    it('converts to immutable', () => {
+      const state = Map();
+      const entries = ['23', '127 Hours'];  // this is a plain old js array
+      const nextState = setEntries(state, entries);
       expect(nextState).to.equal(Map({
         entries: List.of('23', '127 Hours')
       }));
