@@ -36,7 +36,7 @@ describe('reducer', () => {
       },
       entries: []
     });
-    const action = { type: 'VOTE', entries: '23' };
+    const action = { type: 'VOTE', entry: '23' };
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
@@ -53,6 +53,23 @@ describe('reducer', () => {
     const nextState = reducer(undefined, action);
     expect(nextState).to.equal(fromJS({
       entries: ['23']
+    }));
+  });
+
+  it('can be used with reduce', () => {
+    const actions = [
+      {type: 'SET_ENTRIES', entries: ['23', '127 Hours']},
+      {type: 'NEXT'},
+      {type: 'VOTE', entry: '23'},
+      {type: 'VOTE', entry: '127 Hours'},
+      {type: 'VOTE', entry: '23'},
+      {type: 'NEXT'}
+    ];
+
+    const finalState = actions.reduce(reducer, Map());
+
+    expect(finalState).to.equal(fromJS({
+      winner: '23'
     }));
   });
 });
