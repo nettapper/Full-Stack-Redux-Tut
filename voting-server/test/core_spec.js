@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { List, Map } from 'immutable';
 
-import { setEntries } from '../src/core';
+import { setEntries, next } from '../src/core';
 
 describe('application logic', () => {
 
@@ -21,6 +21,21 @@ describe('application logic', () => {
       const nextState = setEntries(state, entries);
       expect(nextState).to.equal(Map({
         entries: List.of('23', '127 Hours')
+      }));
+    });
+  });
+
+  describe('next', () => {
+    it('takes the nex two entries under vote', () => {
+      const state = Map({
+        entries: List.of('23', '127 Hours', '7 Psychopaths')
+      });
+      const nextState = next(state);
+      expect(nextState).to.equal(Map({
+        vote: Map({
+          pair: List.of('23', '127 Hours')
+        }),
+        entries: List.of('7 Psychopaths')
       }));
     });
   });
