@@ -16,3 +16,12 @@ export function next(state) {
   });
 }
 
+// vote should increment the counter in state.vote.tally or add one if one
+// doesn't already exist
+export function vote(state, entry) {
+  return state.updateIn(
+    ['vote', 'tally', entry],
+    0,
+    tally => tally + 1
+  );
+}
