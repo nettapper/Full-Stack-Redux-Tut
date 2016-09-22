@@ -38,6 +38,46 @@ describe('application logic', () => {
         entries: List.of('7 Psychopaths')
       }));
     });
+
+    it('puts the winner of current vote back to entries', () => {
+      const state = Map({
+        vote: Map({
+          pair: List.of('23', '127 Hours'),
+          tally: Map({
+            '23': 10,
+            '127 Hours': 4
+          })
+        }),
+        entries: List.of('7 Psychopaths', 'Red', 'Jumper')
+      });
+      const nextState = next(state);
+      expect(nextState).to.equal(Map({
+        vote: Map({
+          pair: List.of('7 Psychopaths', 'Red'),
+        }),
+        entries: List.of('Jumper', '23')
+      }));
+    });
+
+    it('puts both from tied vote back to entries', () => {
+      const state = Map({
+        vote: Map({
+          pair: List.of('23', '127 Hours'),
+          tally: Map({
+            '23': 7,
+            '127 Hours': 7
+          })
+        }),
+        entries: List.of('7 Psychopaths', 'Red', 'Jumper')
+      });
+      const nextState = next(state);
+      expect(nextState).to.equal(Map({
+        vote: Map({
+          pair: List.of('7 Psychopaths', 'Red'),
+        }),
+        entries: List.of('Jumper', '23', '127 Hours')
+      }));
+    });
   });
 
   describe('vote', () => {
