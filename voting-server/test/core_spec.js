@@ -100,44 +100,32 @@ describe('application logic', () => {
   describe('vote', () => {
     it('creates a tally for the voted entry', () => {
       const state = Map({
-        vote: Map({
-          pair: List.of('23', '127 Hours')
-        }),
-        entries: List()
+        pair: List.of('23', '127 Hours')
       });
       const nextState = vote(state, '23');
       expect(nextState).to.equal(Map({
-        vote: Map({
-          pair: List.of('23', '127 Hours'),
-          tally: Map({
-            '23': 1
-          })
-        }),
-        entries: List()
+        pair: List.of('23', '127 Hours'),
+        tally: Map({
+          '23': 1
+        })
       }));
     });
 
     it('adds to existing tally for the voted entry', () => {
       const state = Map({
-        vote: Map({
-          pair: List.of('23', '127 Hours'),
-          tally: Map({
-            '23': 1,
-            '127 Hours': 27
-          })
-        }),
-        entries: List()
+        pair: List.of('23', '127 Hours'),
+        tally: Map({
+          '23': 1,
+          '127 Hours': 27
+        })
       });
       const nextState = vote(state, '127 Hours');
       expect(nextState).to.equal(Map({
-        vote: Map({
-          pair: List.of('23', '127 Hours'),
-          tally: Map({
-            '23': 1,
-            '127 Hours': 28
-          })
-        }),
-        entries: List()
+        pair: List.of('23', '127 Hours'),
+        tally: Map({
+          '23': 1,
+          '127 Hours': 28
+        })
       }));
     });
   });
