@@ -20,6 +20,7 @@
     "chai-immutable": "^1.6.0",
     "jsdom": "^9.8.3",
     "mocha": "^3.1.2",
+    "react-hot-loader": "^3.0.0-beta.6",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
@@ -27,9 +28,14 @@
     "presets": [
       "es2015",
       "react"
+    ],
+    "plugins": [
+      "react-hot-loader/babel"
     ]
   },
   "dependencies": {
-    "immutable": "^3.8.1"
+    "immutable": "^3.8.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   }
 }
