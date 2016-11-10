@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"src/**/*_spec@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
@@ -36,6 +36,7 @@
   "dependencies": {
     "immutable": "^3.8.1",
     "react": "^15.3.2",
+    "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2"
   }
 }
